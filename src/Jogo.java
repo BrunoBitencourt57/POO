@@ -8,7 +8,7 @@ public class Jogo {
     }
 
     public String getNome() {
-        return nome = JOao;
+        return nome = nome;
     }
 
     public double getPreco() {
