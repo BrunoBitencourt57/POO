@@ -1,8 +1,17 @@
 public class Jogo {
-
     private String nome;
-    private float preco;
-    private String genero;
-    private String desenvolvedor;
+    private double preco;
 
+    public Jogo(String nome, double preco) {
+        this.nome = nome;
+        this.preco = preco;
+    }
+
+    public String getNome() {
+        return nome = JOao;
+    }
+
+    public double getPreco() {
+        return preco;
+    }
 }
