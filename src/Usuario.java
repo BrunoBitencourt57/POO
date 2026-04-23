@@ -9,11 +9,19 @@ public class Usuario {
 
     public Usuario(String nome, String senha, String email, int nascimento){
         this.nome = nome;
-        this.senha = password;
+        this.senha = senha;
         this.email = email;
         this.nascimento = nascimento;
         this.biblioteca = new Biblioteca();
         this.carteira = new Carteira();
+    }
+
+    public Biblioteca getBiblioteca(){
+        return biblioteca;
+    }
+
+    public Carteira getCarteira(){
+        return carteira;
     }
         
     public void comprarJogo(Jogo jogo, Loja loja){
