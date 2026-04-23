@@ -20,7 +20,7 @@ public class Usuario {
        loja.venderJogo(this, jogo);
     }
     
-    public void listarBiblioteca(){
-       biblioteca.listarJogos();
+    public void exibirBiblioteca(){
+       biblioteca.exibirJogos();
    }
 }
