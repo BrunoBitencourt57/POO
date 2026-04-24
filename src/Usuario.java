@@ -31,4 +31,13 @@ public class Usuario {
     public void exibirBiblioteca(){
        biblioteca.exibirJogos();
    }
+
+    public void avaliarJogo(Jogo jogo, int nota, String comentario) {
+        if (biblioteca.buscarJogo(jogo.getNome()) != null) {
+            Avaliacao avaliacao = new Avaliacao(this, jogo, nota, comentario);
+            jogo.adicionarAvaliacao(avaliacao);
+        } else {
+            System.out.println("Você não possui esse jogo!");
+        }
+    }
 }
