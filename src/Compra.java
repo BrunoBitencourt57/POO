@@ -10,6 +10,10 @@ public class Compra {
 
     // O construtor recebe o usuário e o jogo, capturando os dados no momento da venda.
     public Compra(Usuario usuario, Jogo jogo) {
+        if (usuario == null || jogo == null) {
+            throw new IllegalArgumentException("Usuário e jogo não podem ser nulos");
+        }
+        
         this.usuario = usuario;
         this.jogo = jogo;
         this.valorPago = jogo.getPreco();              // Armazenamos o preço do jogo no momento da compra.
