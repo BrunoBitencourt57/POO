@@ -42,6 +42,6 @@ public class Jogo extends Produto {
 
     @Override
     public String toString() {
-        return nome + " - R$ " + preco + " | Média: " + getMediaAvaliacoes();
+        return getNome() + " - R$ " + getPreco() + " | Média: " + getMediaAvaliacoes();
     }
 }
