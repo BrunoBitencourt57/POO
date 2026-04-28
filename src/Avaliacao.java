@@ -9,12 +9,16 @@ public class Avaliacao {
     private LocalDateTime data;
 
     public Avaliacao(Usuario usuario, Jogo jogo, int nota, String comentario) {
+        if (usuario == null || jogo == null) {
+            throw new IllegalArgumentException("Usuário e jogo não podem ser nulos");
+        }
+        
         this.usuario = usuario;
         this.jogo = jogo;
-        setNota(nota); // validação
-        this.comentario = comentario;
+        setNota(nota);
+        this.comentario = (comentario != null) ? comentario : ""; 
         this.data = LocalDateTime.now();
-    }
+    } 
 
     public Usuario getUsuario() {
         return usuario;
