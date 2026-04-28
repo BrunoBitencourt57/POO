@@ -11,15 +11,18 @@ public class Jogo extends Produto {
     }
 
     public void adicionarDLC(DLC dlc) {
-        if (dlc == null) return;
+    if (dlc == null) {
+        throw new IllegalArgumentException("DLC não pode ser nula");
+    }
 
-        if (!dlc.getJogoBase().equals(this)) {
-            System.out.println("DLC não pertence a este jogo!");
-            return;
-        }
+    if (dlc.getJogoBase() != this) {
+        throw new IllegalArgumentException("DLC não pertence a este jogo");
+    }
 
+    if (!dlcs.contains(dlc)) {
         dlcs.add(dlc);
-    } 
+    }
+}
 
     public void adicionarAvaliacao(Avaliacao avaliacao) {
         if (avaliacao == null) return;
