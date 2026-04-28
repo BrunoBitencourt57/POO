@@ -9,12 +9,12 @@ public class PagamentoPix implements FormaDePagamento {
     @Override
     public boolean pagar(double valor) {
         if (valor <= 0) {
-            System.out.println("Valor inválido!");
+            throw new IllegalArgumentException("Valor inválido!");
             return false;
         }
 
         if (chavePix == null || chavePix.isEmpty()) {
-            System.out.println("Chave PIX inválida!");
+            throw new IllegalArgumentException("Chave PIX inválida!");
             return false;
         }
 
