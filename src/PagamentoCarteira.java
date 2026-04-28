@@ -1,4 +1,4 @@
-public class PagamentoCarteira extends FormaDePagamento {
+public class PagamentoCarteira implements FormaDePagamento {
 
     private Carteira carteira;
 
