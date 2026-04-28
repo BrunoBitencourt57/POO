@@ -24,9 +24,25 @@ public class Usuario {
         return carteira;
     }
         
-    public void comprarJogo(Jogo jogo, Loja loja){
-       loja.venderJogo(this, jogo);
+    public String getNome() {
+        return nome;
     }
+
+    public void setEmail(String email) {
+        if (email != null && email.contains("@")) {
+            this.email = email;
+        }
+    }
+
+    public void setSenha(String senha) {
+        if (senha != null && senha.length() >= 3) {
+            this.senha = senha;
+        }
+    }
+
+    public void comprarProduto(Produto produto, Loja loja) {
+        loja.venderProduto(this, produto);
+    } 
     
     public void exibirBiblioteca(){
        biblioteca.exibirJogos();
