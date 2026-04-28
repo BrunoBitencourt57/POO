@@ -3,24 +3,47 @@ import java.util.List;
 
 public class Loja {
     
-    private List<Jogo> jogosDisponiveis = new ArrayList<>();
+    private List<Produto> produtosDisponiveis = new ArrayList<>(); 
 
-    public void venderJogo(Usuario usuario, Jogo jogo) {
+    public void adicionarProduto(Produto produto) {
+        if (produto != null && !produtosDisponiveis.contains(produto)) {
+            produtosDisponiveis.add(produto);
+        }
+    } 
 
-        if (!jogosDisponiveis.contains(jogo)) {
-            System.out.println("Jogo não disponível!");
-            return;
+    public boolean venderProduto(Usuario usuario, Produto produto, FormaDePagamento pagamento) {
+
+        if (usuario == null || produto == null || pagamento == null) {
+            return false;
         }
 
-        if (usuario.getCarteira().debitar(jogo.getPreco())) {
-            usuario.getBiblioteca().adicionarJogo(jogo);
-
-            Compra compra = new Compra(usuario, jogo); 
-            compra.exibirCompra();
-
-            System.out.println("Compra realizada!");
-        } else {
-            System.out.println("Saldo insuficiente!");
+        if (!produtosDisponiveis.contains(produto)) {
+            return false;
         }
+
+        // 🔥 validação da DLC ANTES do pagamento
+        if (produto instanceof DLC) {
+            DLC dlc = (DLC) produto;
+
+            if (usuario.getBiblioteca().buscarJogo(dlc.getJogoBase().getNome()) == null) {
+                System.out.println("Você precisa ter o jogo base!");
+                return false;
+            }
+        }
+
+        if (pagamento.pagar(produto.getPreco())) {
+
+            if (produto instanceof Jogo) {
+                usuario.getBiblioteca().adicionarJogo((Jogo) produto);
+            }
+
+            Compra compra = new Compra(usuario, produto);
+            usuario.adicionarCompra(compra);
+
+            System.out.println("Compra realizada com sucesso!");
+            return true;
+        }
+
+        return false;
     }
 }
