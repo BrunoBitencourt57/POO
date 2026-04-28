@@ -1,4 +1,5 @@
-class Carteira {
+public class Carteira {
+
     private double saldo;
 
     public Carteira() {
@@ -10,11 +11,12 @@ class Carteira {
     }
 
     public void adicionarSaldo(double valor) {
-        if (valor > 0) {
-            saldo += valor;
-        } else {
+        if (valor <= 0) {
             System.out.println("Valor inválido!");
+            return;
         }
+
+        saldo += valor;
     }
 
     public boolean debitar(double valor) {
@@ -23,12 +25,12 @@ class Carteira {
             return false;
         }
 
-        if (saldo >= valor) {
-            saldo -= valor;
-            return true;
-        }else{
+        if (saldo < valor) {
             System.out.println("Saldo insuficiente!");
             return false;
         }
+
+        saldo -= valor;
+        return true;
     }
 }
