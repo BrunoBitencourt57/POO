@@ -10,8 +10,6 @@ public class DLC extends Produto {
         }
 
         this.jogoBase = jogoBase;
-
-             jogoBase.adicionarDLC(this);
     } 
 
     public Jogo getJogoBase() {
