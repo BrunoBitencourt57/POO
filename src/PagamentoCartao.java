@@ -1,4 +1,4 @@
-public class PagamentoCartao extends FormaDePagamento {
+public class PagamentoCartao implements FormaDePagamento {
 
     private String numeroCartao;
 
