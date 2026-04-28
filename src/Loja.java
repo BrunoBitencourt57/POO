@@ -23,11 +23,17 @@ public class Loja {
 
         if (produto instanceof DLC) {
             DLC dlc = (DLC) produto;
-
-            if (usuario.getBiblioteca().buscarJogo(dlc.getJogoBase().getNome()) == null) {
+        
+            Jogo jogoBase = dlc.getJogoBase();
+        
+            Jogo jogoDoUsuario = usuario.getBiblioteca().buscarJogo(jogoBase.getNome());
+        
+            if (jogoDoUsuario == null) {
                 System.out.println("Você precisa ter o jogo base!");
                 return false;
             }
+        
+            jogoDoUsuario.adicionarDLC(dlc);
         }
 
         if (pagamento.pagar(produto.getPreco())) {
