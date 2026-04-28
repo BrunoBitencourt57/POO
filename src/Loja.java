@@ -21,7 +21,6 @@ public class Loja {
             return false;
         }
 
-        // 🔥 validação da DLC ANTES do pagamento
         if (produto instanceof DLC) {
             DLC dlc = (DLC) produto;
 
