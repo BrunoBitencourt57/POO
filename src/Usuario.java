@@ -8,6 +8,18 @@ public class Usuario {
     private Biblioteca biblioteca;
 
     public Usuario(String nome, String senha, String email, int nascimento){
+        if (nome == null || nome.isEmpty()) {
+            throw new IllegalArgumentException("Nome inválido");
+        }
+
+        if (senha == null || senha.length() < 3) {
+            throw new IllegalArgumentException("Senha inválida");
+        }
+
+        if (email == null || !email.contains("@")) {
+            throw new IllegalArgumentException("Email inválido");
+        }
+
         this.nome = nome;
         this.senha = senha;
         this.email = email;
@@ -16,16 +28,16 @@ public class Usuario {
         this.carteira = new Carteira();
     }
 
-    public Biblioteca getBiblioteca(){
-        return biblioteca;
+    public String getNome() {
+        return nome;
     }
 
     public Carteira getCarteira(){
         return carteira;
     }
-        
-    public String getNome() {
-        return nome;
+
+    public Biblioteca getBiblioteca(){
+        return biblioteca;
     }
 
     public void setEmail(String email) {
@@ -40,13 +52,13 @@ public class Usuario {
         }
     }
 
-    public void comprarProduto(Produto produto, Loja loja) {
-        loja.venderProduto(this, produto);
-    } 
-    
+    public void comprarProduto(Produto produto, Loja loja, FormaDePagamento pagamento) {
+        loja.venderProduto(this, produto, pagamento);
+    }
+
     public void exibirBiblioteca(){
-       biblioteca.exibirJogos();
-   }
+        biblioteca.exibirJogos();
+    }
 
     public void avaliarJogo(Jogo jogo, int nota, String comentario) {
         if (biblioteca.buscarJogo(jogo.getNome()) != null) {
