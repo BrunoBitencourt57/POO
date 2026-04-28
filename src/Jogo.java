@@ -29,8 +29,7 @@ public class Jogo extends Produto {
 
         for (Avaliacao a : avaliacoes) {
             if (a.getUsuario().equals(avaliacao.getUsuario())) {
-                System.out.println("Usuário já avaliou esse jogo!");
-                return;
+            throw new IllegalArgumentException("Usuário já avaliou esse jogo");
             }
         }
 
@@ -49,8 +48,8 @@ public class Jogo extends Produto {
     }
 
     public List<Avaliacao> getAvaliacoes() {
-        return avaliacoes;
-    }
+    return new ArrayList<>(avaliacoes);
+}
 
     @Override
     public String toString() {
