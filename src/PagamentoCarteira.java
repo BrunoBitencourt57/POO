@@ -8,6 +8,16 @@ public class PagamentoCarteira extends FormaDePagamento {
 
     @Override
     public boolean pagar(double valor) {
+        if (carteira == null) {
+            System.out.println("Carteira inválida!");
+            return false;
+        }
+
+        if (valor <= 0) {
+            System.out.println("Valor inválido!");
+            return false;
+        }
+
         return carteira.debitar(valor);
     }
 }
