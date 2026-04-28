@@ -13,6 +13,11 @@ public class PagamentoPix extends FormaDePagamento {
             return false;
         }
 
+        if (chavePix == null || chavePix.isEmpty()) {
+            System.out.println("Chave PIX inválida!");
+            return false;
+        }
+
         System.out.println("Pagamento via PIX realizado com sucesso!");
         return true;
     }
