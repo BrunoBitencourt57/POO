@@ -3,13 +3,15 @@ public class DLC extends Produto {
     private Jogo jogoBase;
 
     public DLC(String nome, double preco, Jogo jogoBase) {
-           super(nome, preco);
+        super(nome, preco);
 
-           if (jogoBase == null) {
-                     throw new IllegalArgumentException("Jogo base não pode ser nulo");
-           }
+        if (jogoBase == null) {
+            throw new IllegalArgumentException("Jogo base não pode ser nulo");
+        }
 
-           this.jogoBase = jogoBase;
+        this.jogoBase = jogoBase;
+
+             jogoBase.adicionarDLC(this);
     } 
 
     public Jogo getJogoBase() {
