@@ -4,37 +4,38 @@ import java.time.format.DateTimeFormatter;
 public class Compra {
 
     private Usuario usuario;
-    private Jogo jogo;
+    private Produto produto;
     private double valorPago;
     private LocalDateTime dataCompra;
 
-    // O construtor recebe o usuário e o jogo, capturando os dados no momento da venda.
-    public Compra(Usuario usuario, Jogo jogo) {
-        if (usuario == null || jogo == null) {
-            throw new IllegalArgumentException("Usuário e jogo não podem ser nulos");
+    public Compra(Usuario usuario, Produto produto) {
+        if (usuario == null || produto == null) {
+            throw new IllegalArgumentException("Usuário e produto não podem ser nulos");
         }
-        
+
         this.usuario = usuario;
-        this.jogo = jogo;
-        this.valorPago = jogo.getPreco();              // Armazenamos o preço do jogo no momento da compra.
-        this.dataCompra = LocalDateTime.now();         // Registra o momento exato da transação.
+        this.producto = produto;
+        this.valorPago = produto.getPreco();
+        this.dataCompra = LocalDateTime.now();
     }
 
-    // Método solicitado pela classe Loja.
     public void exibirCompra() {
         DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
-        //Para imprimir um molde de data com hora e minutos da compra.
 
         System.out.println("COMPROVANTE DE COMPRA");
         System.out.println("Cliente: " + usuario.getNome());
-        System.out.println("Jogo: " + jogo.getNome());
-        System.out.println("Valor: R$ " + valorPago);
+        System.out.println("Produto adquirido: " + produto.getNome());
+        System.out.println("Valor: R$ " + String.format("%.2f", valorPago));
         System.out.println("Data: " + dataCompra.format(formato));
     }
 
-    // Para que outra parte do sistema consulte os dados da última compra.
     public Usuario getUsuario() { return usuario; }
-    public Jogo getJogo() { return jogo; }
+    public Produto getProduto() { return produto; }
     public double getValorPago() { return valorPago; }
     public LocalDateTime getDataCompra() { return dataCompra; }
+
+    @Override
+    public String toString() {
+        return produto.getNome() + " - R$ " + String.format("%.2f", valorPago);
+    }
 }
