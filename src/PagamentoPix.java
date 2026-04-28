@@ -1,4 +1,4 @@
-public class PagamentoPix extends FormaDePagamento {
+public class PagamentoPix implements FormaDePagamento {
 
     private String chavePix;
 
