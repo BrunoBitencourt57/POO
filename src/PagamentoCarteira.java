@@ -9,12 +9,12 @@ public class PagamentoCarteira implements FormaDePagamento {
     @Override
     public boolean pagar(double valor) {
         if (carteira == null) {
-            System.out.println("Carteira inválida!");
+            throw new IllegalArgumentException("Carteira inválida!");
             return false;
         }
 
         if (valor <= 0) {
-            System.out.println("Valor inválido!");
+            throw new IllegalArgumentException("Valor inválido!");
             return false;
         }
 
