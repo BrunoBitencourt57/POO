@@ -1,33 +1,42 @@
 public class Main {
     public static void main(String[] args) {
 
-        // Criando usuário
-        Usuario usuario = new Usuario("Bruno", "123", "bruno@email.com", 2000);
+        Usuario user = new Usuario("Brayan", "1234", "brayan@email.com", 2000);
 
-        // Criando jogos
-        Jogo gta = new Jogo("GTA V", 99.90);
-        Jogo minecraft = new Jogo("Minecraft", 59.90);
-
-        // Criando loja
         Loja loja = new Loja();
 
-        // (IMPORTANTE) adicionando jogos na loja
-        loja.adicionarJogo(gta);
-        loja.adicionarJogo(minecraft);
+        Jogo fifa = new Jogo("FIFA 24", 100);
+        Jogo gta = new Jogo("GTA V", 80);
 
-        // Adicionando saldo
-        usuario.getCarteira().adicionarSaldo(200);
+        DLC dlcFifa = new DLC("Ultimate Team Pack", 30, fifa);
 
-        // Comprando jogo
-        usuario.comprarJogo(gta, loja);
+        loja.adicionarProduto(fifa);
+        loja.adicionarProduto(gta);
+        loja.adicionarProduto(dlcFifa);
 
-        // Ver biblioteca
-        usuario.exibirBiblioteca();
+        user.getCarteira().adicionarSaldo(200);
 
-        // Avaliar jogo
-        usuario.avaliarJogo(gta, 5, "Muito bom!");
+        FormaDePagamento pagamentoCarteira = new PagamentoCarteira(user.getCarteira());
+        FormaDePagamento pagamentoCartao = new PagamentoCartao("1234-5678");
+        FormaDePagamento pagamentoPix = new PagamentoPix("brayan@email.com");
 
-        // Mostrar média
-        System.out.println("Média do jogo: " + gta.getMediaAvaliacoes());
+        System.out.println("\n--- Comprando FIFA com carteira ---");
+        loja.venderProduto(user, fifa, pagamentoCarteira);
+
+        System.out.println("\n--- Comprando GTA com cartão ---");
+        loja.venderProduto(user, gta, pagamentoCartao);
+
+        System.out.println("\n--- Tentando comprar DLC sem lógica de ordem ---");
+        loja.venderProduto(user, dlcFifa, pagamentoPix);
+
+        System.out.println("\n--- Biblioteca do usuário ---");
+        user.exibirBiblioteca();
+
+        System.out.println("\n--- Avaliando jogo ---");
+        user.avaliarJogo(fifa, 5, "Muito bom!");
+
+        System.out.println("\nMédia de avaliações do FIFA: " + fifa.getMediaAvaliacoes());
+
+        System.out.println("\nSaldo restante: R$ " + user.getCarteira().getSaldo());
     }
 }
