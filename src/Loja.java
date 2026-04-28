@@ -37,7 +37,7 @@ public class Loja {
             }
 
             Compra compra = new Compra(usuario, produto);
-            usuario.adicionarCompra(compra);
+            compra.exibirCompra();
 
             System.out.println("Compra realizada com sucesso!");
             return true;
