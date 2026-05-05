@@ -1,6 +1,7 @@
 public class Produto {
     private String nome;
     private double preco;
+    private string desenvolvedor;
 
     public Produto(String nome, double preco) {
         if (nome == null || nome.isEmpty()) {
