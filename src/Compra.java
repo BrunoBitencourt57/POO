@@ -18,7 +18,7 @@ public class Compra {
 
 
         this.usuario = usuario;
-        this.produto = produto; // ✅ CORRIGIDO AQUI
+        this.produto = produto;
         this.valorPago = produto.getPreco();
         this.dataCompra = LocalDateTime.now();
     }
