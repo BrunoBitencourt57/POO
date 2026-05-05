@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Jogo extends Produto {
+public class Jogo extends Produto implements Avaliavel {
 
     private List<Avaliacao> avaliacoes = new ArrayList<>();
     private List<DLC> dlcs = new ArrayList<>(); 
@@ -11,25 +11,19 @@ public class Jogo extends Produto {
     }
 
     public void adicionarDLC(DLC dlc) {
-    if (dlc == null) {
-        throw new IllegalArgumentException("DLC não pode ser nula");
-    }
+        if (dlc != null) {
+            dlcs.add(dlc);
+        }
+    } 
 
-    if (dlc.getJogoBase() != this) {
-        throw new IllegalArgumentException("DLC não pertence a este jogo");
-    }
-
-    if (!dlcs.contains(dlc)) {
-        dlcs.add(dlc);
-    }
-}
-
+    @Override
     public void adicionarAvaliacao(Avaliacao avaliacao) {
         if (avaliacao == null) return;
 
         for (Avaliacao a : avaliacoes) {
             if (a.getUsuario().equals(avaliacao.getUsuario())) {
-            throw new IllegalArgumentException("Usuário já avaliou esse jogo");
+                System.out.println("Usuário já avaliou esse jogo!");
+                return;
             }
         }
 
@@ -48,11 +42,11 @@ public class Jogo extends Produto {
     }
 
     public List<Avaliacao> getAvaliacoes() {
-    return new ArrayList<>(avaliacoes);
-}
+        return avaliacoes;
+    }
 
     @Override
     public String toString() {
-        return getNome() + " - R$ " + getPreco() + " | Média: " + getMediaAvaliacoes();
+        return nome + " - R$ " + preco + " | Média: " + getMediaAvaliacoes();
     }
 }
