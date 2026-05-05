@@ -1,6 +1,6 @@
 public class DLC extends Produto {
 
-    private Jogo jogoBase;
+    private final Jogo jogoBase;
 
     public DLC(String nome, double preco, Jogo jogoBase) {
         super(nome, preco);
@@ -18,6 +18,7 @@ public class DLC extends Produto {
 
     @Override
     public String toString() {
-        return getNome() + " (DLC de " + jogoBase.getNome() + ") - R$ " + getPreco();
+        return getNome() + " (DLC de " + jogoBase.getNome() + ") - R$ " 
+               + String.format("%.2f", getPreco());
     }
 }
