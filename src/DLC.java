@@ -1,16 +1,28 @@
+package produtos;
+
 import java.util.ArrayList;
 import java.util.List;
+
+import avaliacoes.Avaliacao;
+import interfaces.Avaliavel;
 
 public class DLC extends Produto implements Avaliavel {
 
     private final Jogo jogoBase;
-    private List<Avaliacao> avaliacoes = new ArrayList<>();
+    private List<Avaliacao> avaliacoes =
+            new ArrayList<>();
 
-    public DLC(String nome, double preco, String desenvolvedor, Jogo jogoBase) {
+    public DLC(
+            String nome,
+            double preco,
+            String desenvolvedor,
+            Jogo jogoBase) {
+
         super(nome, preco, desenvolvedor);
 
         if (jogoBase == null) {
-            throw new IllegalArgumentException("Jogo base não pode ser nulo");
+            throw new IllegalArgumentException(
+                    "Jogo base não pode ser nulo");
         }
 
         this.jogoBase = jogoBase;
@@ -21,16 +33,22 @@ public class DLC extends Produto implements Avaliavel {
     }
 
     @Override
-    public void adicionarAvaliacao(Avaliacao avaliacao) {
+    public void adicionarAvaliacao(
+            Avaliacao avaliacao) {
+
         if (avaliacao == null) return;
+
         avaliacoes.add(avaliacao);
     }
 
     @Override
     public double getMediaAvaliacoes() {
-        if (avaliacoes.isEmpty()) return 0;
+
+        if (avaliacoes.isEmpty())
+            return 0;
 
         double soma = 0;
+
         for (Avaliacao a : avaliacoes) {
             soma += a.getNota();
         }
@@ -40,9 +58,12 @@ public class DLC extends Produto implements Avaliavel {
 
     @Override
     public String gerarResumo() {
+
         return String.format(
-                "[DLC] %s | Requer o jogo: %s | Preço: R$ %.2f | Média: %.1f",
-                getNome(), jogoBase.getNome(), getPreco(), getMediaAvaliacoes()
+            "[DLC] %s | Requer: %s | Preço: %.2f",
+            getNome(),
+            jogoBase.getNome(),
+            getPreco()
         );
     }
 }
