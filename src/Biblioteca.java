@@ -1,9 +1,14 @@
+package biblioteca;
+
+import produtos.Jogo;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
 public class Biblioteca {
+
     private List<Jogo> meusJogos;
 
     public Biblioteca() {
@@ -43,45 +48,56 @@ public class Biblioteca {
 
     public List<Jogo> ordenarPorNome() {
         List<Jogo> jogosOrdenados = new ArrayList<>(meusJogos);
+
         Collections.sort(jogosOrdenados, new Comparator<Jogo>() {
             @Override
             public int compare(Jogo j1, Jogo j2) {
                 return j1.getNome().compareToIgnoreCase(j2.getNome());
             }
         });
+
         return jogosOrdenados;
     }
 
     public List<Jogo> ordenarPorPreco() {
         List<Jogo> jogosOrdenados = new ArrayList<>(meusJogos);
+
         Collections.sort(jogosOrdenados, new Comparator<Jogo>() {
             @Override
             public int compare(Jogo j1, Jogo j2) {
                 return Double.compare(j1.getPreco(), j2.getPreco());
             }
         });
+
         return jogosOrdenados;
     }
 
     public List<Jogo> ordenarPorPrecoDecrescente() {
         List<Jogo> jogosOrdenados = new ArrayList<>(meusJogos);
+
         Collections.sort(jogosOrdenados, new Comparator<Jogo>() {
             @Override
             public int compare(Jogo j1, Jogo j2) {
                 return Double.compare(j2.getPreco(), j1.getPreco());
             }
         });
+
         return jogosOrdenados;
     }
 
     public List<Jogo> ordenarPorAvaliacao() {
         List<Jogo> jogosOrdenados = new ArrayList<>(meusJogos);
+
         Collections.sort(jogosOrdenados, new Comparator<Jogo>() {
             @Override
             public int compare(Jogo j1, Jogo j2) {
-                return Double.compare(j2.getMediaAvaliacoes(), j1.getMediaAvaliacoes());
+                return Double.compare(
+                        j2.getMediaAvaliacoes(),
+                        j1.getMediaAvaliacoes()
+                );
             }
         });
+
         return jogosOrdenados;
     }
 
@@ -89,7 +105,7 @@ public class Biblioteca {
         if (indice < 0 || indice >= meusJogos.size()) {
             return null;
         }
+
         return meusJogos.get(indice);
     }
-
 }
