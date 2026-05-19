@@ -1,6 +1,8 @@
+package pagamentos;
+
 public abstract class FormaDePagamento {
 
-    protected TipoPagamento tipo; // usa o enum
+    protected TipoPagamento tipo;
 
     public FormaDePagamento(TipoPagamento tipo) {
         this.tipo = tipo;
