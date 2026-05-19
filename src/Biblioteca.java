@@ -85,4 +85,11 @@ public class Biblioteca {
         return jogosOrdenados;
     }
 
+    public Jogo getJogoPorIndice(int indice) {
+        if (indice < 0 || indice >= meusJogos.size()) {
+            return null;
+        }
+        return meusJogos.get(indice);
+    }
+
 }
