@@ -1,5 +1,3 @@
-package avaliacoes;
-
 import java.time.LocalDateTime;
 
 import usuarios.Usuario;
