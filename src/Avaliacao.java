@@ -2,42 +2,30 @@ import java.time.LocalDateTime;
 
 public class Avaliacao {
 
-    private Usuario usuario;
-    private Jogo jogo;
+    private Usuario autor;
+    private Avaliavel avaliado;
     private int nota;
     private String comentario;
     private LocalDateTime data;
 
-    public Avaliacao(Usuario usuario, Jogo jogo, int nota, String comentario) {
-        if (usuario == null || jogo == null) {
-            throw new IllegalArgumentException("Usuário e jogo não podem ser nulos");
+    public Avaliacao(Usuario autor, Avaliavel avaliado, int nota, String comentario) {
+        if (autor == null || avaliado == null) {
+            throw new IllegalArgumentException("Autor e avaliado não podem ser nulos");
         }
-        
-        this.usuario = usuario;
-        this.jogo = jogo;
-        setNota(nota);
-        this.comentario = (comentario != null) ? comentario : ""; 
-        this.data = LocalDateTime.now();
-    } 
 
-    public Usuario getUsuario() {
-        return usuario;
+        this.autor = autor;
+        this.avaliado = avaliado;
+        setNota(nota);
+        this.comentario = (comentario != null) ? comentario : "";
+        this.data = LocalDateTime.now();
     }
 
-    public Jogo getJogo() {
-        return jogo;
+    public Usuario getUsuario() {
+        return autor;
     }
 
     public int getNota() {
         return nota;
-    }
-
-    public String getComentario() {
-        return comentario;
-    }
-
-    public LocalDateTime getData() {
-        return data;
     }
 
     public void setNota(int nota) {
@@ -49,9 +37,6 @@ public class Avaliacao {
 
     @Override
     public String toString() {
-        return "Jogo: " + jogo.getNome() +
-               " | Nota: " + nota +
-               " | Comentário: " + comentario +
-               " | Usuário: " + usuario.getNome();
+        return "Nota: " + nota + " | Comentário: " + comentario + " | Por: " + autor.getNome();
     }
 }
