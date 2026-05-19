@@ -1,43 +1,68 @@
+package produtos;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class Jogo extends Produto implements Avaliavel {
+import avaliacoes.Avaliacao;
+import interfaces.Avaliavel;
 
-    private List<Avaliacao> avaliacoes = new ArrayList<>();
-    private List<DLC> dlcs = new ArrayList<>();
+public class Jogo extends Produto
+                  implements Avaliavel {
 
-    public Jogo(String nome, double preco, String desenvolvedor) {
+    private List<Avaliacao> avaliacoes =
+            new ArrayList<>();
+
+    private List<DLC> dlcs =
+            new ArrayList<>();
+
+    public Jogo(
+            String nome,
+            double preco,
+            String desenvolvedor) {
+
         super(nome, preco, desenvolvedor);
     }
 
     @Override
     public String gerarResumo() {
+
         return String.format(
-                "[JOGO] %s | Preço: R$ %.2f | Desenvolvedor: %s | Média: %.1f",
-                getNome(), getPreco(), getDesenvolvedor(), getMediaAvaliacoes()
+            "[JOGO] %s | Preço %.2f",
+            getNome(),
+            getPreco()
         );
     }
 
     public void exibirDetalhes() {
-        System.out.println(gerarResumo());
+
+        System.out.println(
+                gerarResumo());
 
         if (dlcs.isEmpty()) {
-            System.out.println("DLCs compradas: nenhuma");
+
+            System.out.println(
+                    "Nenhuma DLC");
+
         } else {
-            System.out.println("DLCs compradas:");
+
             for (DLC dlc : dlcs) {
-                System.out.println("- " + dlc.getNome());
+
+                System.out.println(
+                        dlc.getNome());
             }
         }
     }
 
-    public void adicionarDLC(DLC dlc) {
-        if (dlc == null) {
-            throw new IllegalArgumentException("DLC não pode ser nula");
-        }
+    public void adicionarDLC(
+            DLC dlc) {
 
-        if (dlc.getJogoBase() != this) {
-            throw new IllegalArgumentException("DLC não pertence a este jogo");
+        if (dlc == null)
+            throw new IllegalArgumentException();
+
+        if (dlc.getJogoBase()
+                != this) {
+
+            throw new IllegalArgumentException();
         }
 
         if (!dlcs.contains(dlc)) {
@@ -45,30 +70,30 @@ public class Jogo extends Produto implements Avaliavel {
         }
     }
 
-
     @Override
-    public void adicionarAvaliacao(Avaliacao avaliacao) {
-        if (avaliacao == null) return;
+    public void adicionarAvaliacao(
+            Avaliacao avaliacao) {
 
-        for (Avaliacao a : avaliacoes) {
-            if (a.getUsuario().equals(avaliacao.getUsuario())) {
-                System.out.println("Usuário já avaliou esse jogo!");
-                return;
-            }
-        }
+        if (avaliacao == null)
+            return;
 
         avaliacoes.add(avaliacao);
     }
 
     @Override
     public double getMediaAvaliacoes() {
-        if (avaliacoes.isEmpty()) return 0;
+
+        if (avaliacoes.isEmpty())
+            return 0;
 
         double soma = 0;
+
         for (Avaliacao a : avaliacoes) {
+
             soma += a.getNota();
         }
 
-        return soma / avaliacoes.size();
+        return soma /
+                avaliacoes.size();
     }
 }
