@@ -1,3 +1,7 @@
+package pagamentos;
+
+import usuarios.Carteira;
+
 public class PagamentoCarteira extends FormaDePagamento {
 
     private Carteira carteira;
