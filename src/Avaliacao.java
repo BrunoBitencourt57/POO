@@ -1,57 +1,62 @@
+package avaliacoes;
+
 import java.time.LocalDateTime;
+
+import usuarios.Usuario;
+import interfaces.Avaliavel;
 
 public class Avaliacao {
 
-    private Usuario usuario;
-    private Jogo jogo;
+    private Usuario autor;
+    private Avaliavel avaliado;
     private int nota;
     private String comentario;
     private LocalDateTime data;
 
-    public Avaliacao(Usuario usuario, Jogo jogo, int nota, String comentario) {
-        if (usuario == null || jogo == null) {
-            throw new IllegalArgumentException("Usuário e jogo não podem ser nulos");
-        }
-        
-        this.usuario = usuario;
-        this.jogo = jogo;
-        setNota(nota);
-        this.comentario = (comentario != null) ? comentario : ""; 
-        this.data = LocalDateTime.now();
-    } 
+    public Avaliacao(
+            Usuario autor,
+            Avaliavel avaliado,
+            int nota,
+            String comentario) {
 
-    public Usuario getUsuario() {
-        return usuario;
+        if (autor == null || avaliado == null) {
+            throw new IllegalArgumentException(
+                "Autor e avaliado não podem ser nulos");
+        }
+
+        this.autor = autor;
+        this.avaliado = avaliado;
+        setNota(nota);
+        this.comentario = (comentario != null)
+                ? comentario
+                : "";
+
+        this.data = LocalDateTime.now();
     }
 
-    public Jogo getJogo() {
-        return jogo;
+    public Usuario getUsuario() {
+        return autor;
     }
 
     public int getNota() {
         return nota;
     }
 
-    public String getComentario() {
-        return comentario;
-    }
-
-    public LocalDateTime getData() {
-        return data;
-    }
-
     public void setNota(int nota) {
+
         if (nota < 1 || nota > 5) {
-            throw new IllegalArgumentException("Nota deve ser entre 1 e 5");
+            throw new IllegalArgumentException(
+                "Nota deve ser entre 1 e 5");
         }
+
         this.nota = nota;
     }
 
     @Override
     public String toString() {
-        return "Jogo: " + jogo.getNome() +
-               " | Nota: " + nota +
+
+        return "Nota: " + nota +
                " | Comentário: " + comentario +
-               " | Usuário: " + usuario.getNome();
+               " | Por: " + autor.getNome();
     }
 }
