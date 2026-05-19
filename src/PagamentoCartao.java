@@ -1,10 +1,14 @@
-public class PagamentoCartao implements FormaDePagamento {
+public class PagamentoCartao extends FormaDePagamento {
+
 
     private String numeroCartao;
 
+
     public PagamentoCartao(String numeroCartao) {
+        super(TipoPagamento.CARTAO);
         this.numeroCartao = numeroCartao;
     }
+
 
     @Override
     public boolean pagar(double valor) {
@@ -12,10 +16,8 @@ public class PagamentoCartao implements FormaDePagamento {
             throw new IllegalArgumentException("Valor inválido!");
         }
 
-        if (numeroCartao == null || numeroCartao.isEmpty()) {
-            throw new IllegalArgumentException("Cartão inválido!");
-        }
 
+        System.out.println("Tipo: " + tipo);
         System.out.println("Pagamento de R$ " + valor + " no cartão aprovado!");
         return true;
     }
