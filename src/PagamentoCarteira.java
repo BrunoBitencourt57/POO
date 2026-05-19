@@ -1,8 +1,9 @@
-public class PagamentoCarteira implements FormaDePagamento {
+public class PagamentoCarteira extends FormaDePagamento {
 
     private Carteira carteira;
 
     public PagamentoCarteira(Carteira carteira) {
+        super(TipoPagamento.CARTEIRA);
         this.carteira = carteira;
     }
 
@@ -15,6 +16,8 @@ public class PagamentoCarteira implements FormaDePagamento {
         if (valor <= 0) {
             throw new IllegalArgumentException("Valor inválido!");
         }
+
+        System.out.println("Tipo: " + tipo);
 
         return carteira.debitar(valor);
     }

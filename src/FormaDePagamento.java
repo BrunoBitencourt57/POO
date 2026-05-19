@@ -1,24 +1,14 @@
-public class PagamentoCarteira extends FormaDePagamento {
+public abstract class FormaDePagamento {
 
-    private Carteira carteira;
+    protected TipoPagamento tipo; // usa o enum
 
-    public PagamentoCarteira(Carteira carteira) {
-        super(TipoPagamento.CARTEIRA);
-        this.carteira = carteira;
+    public FormaDePagamento(TipoPagamento tipo) {
+        this.tipo = tipo;
     }
 
-    @Override
-    public boolean pagar(double valor) {
-        if (carteira == null) {
-            throw new IllegalArgumentException("Carteira inválida!");
-        }
-
-        if (valor <= 0) {
-            throw new IllegalArgumentException("Valor inválido!");
-        }
-
-        System.out.println("Tipo: " + tipo);
-
-        return carteira.debitar(valor);
+    public TipoPagamento getTipo() {
+        return tipo;
     }
+
+    public abstract boolean pagar(double valor);
 }
