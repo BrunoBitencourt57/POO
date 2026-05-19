@@ -1,4 +1,9 @@
+package avaliacoes;
+
 import java.time.LocalDateTime;
+
+import usuarios.Usuario;
+import interfaces.Avaliavel;
 
 public class Avaliacao {
 
@@ -8,15 +13,24 @@ public class Avaliacao {
     private String comentario;
     private LocalDateTime data;
 
-    public Avaliacao(Usuario autor, Avaliavel avaliado, int nota, String comentario) {
+    public Avaliacao(
+            Usuario autor,
+            Avaliavel avaliado,
+            int nota,
+            String comentario) {
+
         if (autor == null || avaliado == null) {
-            throw new IllegalArgumentException("Autor e avaliado não podem ser nulos");
+            throw new IllegalArgumentException(
+                "Autor e avaliado não podem ser nulos");
         }
 
         this.autor = autor;
         this.avaliado = avaliado;
         setNota(nota);
-        this.comentario = (comentario != null) ? comentario : "";
+        this.comentario = (comentario != null)
+                ? comentario
+                : "";
+
         this.data = LocalDateTime.now();
     }
 
@@ -29,14 +43,20 @@ public class Avaliacao {
     }
 
     public void setNota(int nota) {
+
         if (nota < 1 || nota > 5) {
-            throw new IllegalArgumentException("Nota deve ser entre 1 e 5");
+            throw new IllegalArgumentException(
+                "Nota deve ser entre 1 e 5");
         }
+
         this.nota = nota;
     }
 
     @Override
     public String toString() {
-        return "Nota: " + nota + " | Comentário: " + comentario + " | Por: " + autor.getNome();
+
+        return "Nota: " + nota +
+               " | Comentário: " + comentario +
+               " | Por: " + autor.getNome();
     }
 }
